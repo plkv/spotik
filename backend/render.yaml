@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: spotik-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: SPOTIFY_REDIRECT_URI
+        value: https://spotik-backend.onrender.com/api/auth/callback
+      - key: FRONTEND_URL
+        value: https://spotik.onrender.com
+      - key: SESSION_SECRET
+        sync: false 

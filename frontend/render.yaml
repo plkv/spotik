@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: spotik
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://spotik-backend.onrender.com
+      - key: REACT_APP_SPOTIFY_CLIENT_ID
+        sync: false 
