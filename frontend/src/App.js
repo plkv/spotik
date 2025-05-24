@@ -54,7 +54,11 @@ function App() {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Spotik
               </Typography>
-              <Button color="inherit">Login with Spotify</Button>
+              <Button color="inherit" onClick={() => {
+                window.location.href = `${process.env.REACT_APP_API_URL}/api/auth/login`;
+              }}>
+                Login with Spotify
+              </Button>
             </Toolbar>
           </AppBar>
           
