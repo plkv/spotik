@@ -54,9 +54,16 @@ function App() {
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Spotik
               </Typography>
-              <Button color="inherit" onClick={() => {
-                window.location.href = `${process.env.REACT_APP_API_URL}/api/auth/login`;
-              }}>
+              <Button
+                color="inherit"
+                onClick={async () => {
+                  // Call the backend to get the Spotify auth URL
+                  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`);
+                  const data = await response.json();
+                  // Redirect the browser to Spotify's auth page
+                  window.location.href = data.url;
+                }}
+              >
                 Login with Spotify
               </Button>
             </Toolbar>
