@@ -10,14 +10,16 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        sync: false
+        sync: mongodb+srv://stasplkv:cwZ4fzu8gaaxdXu3@spotik.uob44ty.mongodb.net/?retryWrites=true&w=majority&appName=spotik
       - key: SPOTIFY_CLIENT_ID
-        sync: false
+        sync: f053e477c449242529f3de80b47dd0c1a
       - key: SPOTIFY_CLIENT_SECRET
-        sync: false
+        sync: d0e20c4de6424fbd9833a216b7acdd3a
       - key: SPOTIFY_REDIRECT_URI
-        value: https://spotik-backend.onrender.com/api/auth/callback
+        value: https://spotik.onrender.com/api/auth/callback
       - key: FRONTEND_URL
         value: https://spotik.onrender.com
       - key: SESSION_SECRET
-        sync: false 
+        sync: mysecret987
+      - key: CORS_ORIGIN
+        value: ['http://localhost:3000', 'https://spotik-w99g.onrender.com'] 
