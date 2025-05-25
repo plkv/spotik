@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: spotik-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: SPOTIFY_CLIENT_ID
+        value: 053e477c449242529f3de80b47dd0c1a
+      - key: SPOTIFY_CLIENT_SECRET
+        value: d0e20c4de6424fbd9833a216b7acdd3a
+      - key: SPOTIFY_REDIRECT_URI
+        value: https://spotik.onrender.com/api/auth/callback
+      - key: FRONTEND_URL
+        value: https://spotik-1.onrender.com
+      - key: SESSION_SECRET
+        value: spotik_secret_key 
