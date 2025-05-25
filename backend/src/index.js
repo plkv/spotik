@@ -18,12 +18,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: process.env.SPOTIFY_REDIRECT_URI
-});
-
 app.get('/api/auth/login', (req, res) => {
   const scopes = [
     'user-read-private',
@@ -39,6 +33,11 @@ app.get('/api/auth/login', (req, res) => {
 app.get('/api/auth/callback', async (req, res) => {
   const { code } = req.query;
   try {
+    const spotifyApi = new SpotifyWebApi({
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      redirectUri: process.env.SPOTIFY_REDIRECT_URI
+    });
     const data = await spotifyApi.authorizationCodeGrant(code);
     req.session.access_token = data.body.access_token;
     req.session.refresh_token = data.body.refresh_token;
