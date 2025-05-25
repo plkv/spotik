@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const session = require('express-session');
 const SpotifyWebApi = require('spotify-web-api-node');
 
@@ -10,11 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: [
-    'https://spotik.onrender.com',
-    'https://spotik-w99g.onrender.com',
-    'http://localhost:3000'
-  ],
+  origin: process.env.FRONTEND_URL,
   credentials: true
 }));
 app.use(express.json());
@@ -42,7 +37,7 @@ app.get('/api/auth/login', (req, res) => {
   ];
   
   const authorizeURL = spotifyApi.createAuthorizeURL(scopes);
-  res.json({ url: authorizeURL });
+  res.redirect(authorizeURL);
 });
 
 app.get('/api/auth/callback', async (req, res) => {
@@ -50,19 +45,13 @@ app.get('/api/auth/callback', async (req, res) => {
   
   try {
     const data = await spotifyApi.authorizationCodeGrant(code);
-    const { access_token, refresh_token } = data.body;
+    req.session.access_token = data.body.access_token;
+    req.session.refresh_token = data.body.refresh_token;
     
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);
-    
-    // Store tokens in session
-    req.session.access_token = access_token;
-    req.session.refresh_token = refresh_token;
-    
-    res.redirect(process.env.FRONTEND_URL || 'http://localhost:3000');
+    res.redirect(process.env.FRONTEND_URL);
   } catch (error) {
     console.error('Error getting tokens:', error);
-    res.redirect(process.env.FRONTEND_URL || 'http://localhost:3000/error');
+    res.redirect(process.env.FRONTEND_URL + '/error');
   }
 });
 
@@ -75,11 +64,6 @@ app.get('/api/health', (req, res) => {
 app.get('/', (req, res) => {
   res.json({ message: 'Spotik API is running' });
 });
-
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
 
 // Start server
 app.listen(PORT, () => {
