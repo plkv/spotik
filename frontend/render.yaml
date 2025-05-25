@@ -1,15 +1,7 @@
-services:
-  - type: web
-    name: spotik
-    env: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./build
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: REACT_APP_API_URL
-        value: https://spotik.onrender.com
-      - key: REACT_APP_SPOTIFY_CLIENT_ID
-        sync: false 
+PORT=5000
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+SPOTIFY_REDIRECT_URI=https://spotik.onrender.com/api/auth/callback
+FRONTEND_URL=https://YOUR_FRONTEND_URL   # (leave as a placeholder for now, update after frontend deploy)
+SESSION_SECRET=mysecret987
+REACT_APP_API_URL=https://YOUR_BACKEND_URL 
