@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors({
   origin: [
+    'https://spotik.onrender.com',
     'https://spotik-w99g.onrender.com',
     'http://localhost:3000'
   ],
@@ -68,6 +69,11 @@ app.get('/api/auth/callback', async (req, res) => {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
+});
+
+// Root route handler
+app.get('/', (req, res) => {
+  res.json({ message: 'Spotik API is running' });
 });
 
 // Connect to MongoDB
