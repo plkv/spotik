@@ -57,10 +57,8 @@ function App() {
               <Button
                 color="inherit"
                 onClick={async () => {
-                  // Call the backend to get the Spotify auth URL
                   const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`);
                   const data = await response.json();
-                  // Redirect the browser to Spotify's auth page
                   window.location.href = data.url;
                 }}
               >
