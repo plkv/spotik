@@ -5,6 +5,7 @@ function App() {
     <div style={{ textAlign: 'center', marginTop: '100px' }}>
       <h1>Spotik</h1>
       <button
+        type="button"
         style={{ fontSize: '1.2em', padding: '10px 30px' }}
         onClick={() => {
           window.location.href = `${process.env.REACT_APP_API_URL}/api/auth/login`;
@@ -12,7 +13,7 @@ function App() {
       >
         Login with Spotify
       </button>
-      <div style={{ marginTop: '20px', color: '#888' }}>v.0.04</div>
+      <div style={{ marginTop: '20px', color: '#888' }}>v.0.05</div>
     </div>
   );
 }
