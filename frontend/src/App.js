@@ -12,7 +12,7 @@ function App() {
       >
         Login with Spotify
       </button>
-      <div style={{ marginTop: '20px', color: '#888' }}>v.0.03</div>
+      <div style={{ marginTop: '20px', color: '#888' }}>v.0.04</div>
     </div>
   );
 }
