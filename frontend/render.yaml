@@ -6,6 +6,6 @@ services:
     staticPublishPath: ./build
     envVars:
       - key: REACT_APP_API_URL
-        value: https://spotik-backend.onrender.com
+        value: https://spotik.onrender.com
       - key: REACT_APP_SPOTIFY_CLIENT_ID
         sync: false 
